@@ -76,6 +76,28 @@ h2 {
 #generatorList h3 {
   margin: 0 0 10px 3px;
 }
+#generatorList > p {
+  margin: 10px 0;
+}
+#generatorList details + details {
+  margin-top: 8px;
+}
+#generatorList details {
+  padding: 16px 20px;
+  border: 2px solid #ab3737;
+}
+#generatorList details summary {
+  margin-inline-start: -10px;
+  font-size: larger;
+  color: #e3e3e3;
+}
+#generatorList details summary:hover {
+  color: #b5b5b5;
+}
+#generatorList details[open] summary {
+  color: #b5b5b5;
+  padding-bottom: 8px;
+}
 #agTitle {
   font-size: 1.4rem;
 }
@@ -153,3 +175,4 @@ p#agSolution {
   padding: 8px 16px;
   margin: 4px 0;
 }
+de

@@ -88,13 +88,25 @@ async function setGenerator(id) {
   await pyodide.runPython('import mathgenerator');
   // Build generator list
   genList = await pyodide.runPython('mathgenerator.getGenList()');
+  const groups = {};
   for (let gen of genList) {
     var div = document.createElement('div');
     div.className = 'generatorListItem';
     div.innerHTML = `<p class='genListItem'>${gen.get(1)}</p>`;
     div.onclick = () => setGenerator(gen.get(0));
-    d_genList.appendChild(div);
+    groups[gen.get(4)] = groups[gen.get(4)] || [];
+    groups[gen.get(4)].push(div);
   }
+  for (let group in groups) {
+    const details = document.createElement('details');
+    details.innerHTML = `<summary>${group
+      .split('_')
+      .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+      .join(' ')}</summary>`;
+    groups[group].forEach((div) => details.appendChild(div));
+    d_genList.appendChild(details);
+  }
+
   generateSample();
   d_splash.style.display = 'none';
 })();

@@ -1,0 +1,155 @@
+:root {
+  font-size: 18px;
+}
+* {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+html,
+body {
+  background-color: #2c2c2c;
+  color: #e3e3e3;
+  width: 95%;
+  margin: auto;
+}
+a {
+  color: #e3e3e3;
+}
+a:hover {
+  color: #868686;
+}
+h1 {
+  width: 100%;
+  margin-bottom: 5px;
+  margin-top: 30px;
+}
+h2 {
+  margin: 0;
+  margin-bottom: 15px;
+}
+#mainContent {
+  display: flex;
+  flex-wrap: wrap;
+}
+.col {
+  width: 50%;
+}
+.col > div {
+  margin: 10px;
+}
+.customBox {
+  background-color: #38393a;
+  padding: 10px;
+
+  border-radius: 10px;
+}
+#pipBox {
+  width: 300px;
+  margin: 15px auto;
+  border-radius: 5px;
+}
+#generatorBox {
+  position: sticky;
+  top: 20px;
+  margin-bottom: 10px;
+  padding: 30px;
+}
+#generatorBox p {
+  text-align: left;
+  margin: 0;
+}
+#generatorBox .agLabel {
+  margin-right: 5px;
+}
+.agItem {
+  display: flex;
+}
+.agItem + .agItem {
+  margin-top: 4px;
+}
+#generatorList {
+  padding: 30px;
+}
+#generatorList * {
+  text-align: left;
+}
+#generatorList h3 {
+  margin: 0 0 10px 3px;
+}
+#agTitle {
+  font-size: 1.4rem;
+}
+.generatorListItem {
+  display: flex;
+}
+hr {
+  margin-top: 30px;
+}
+p {
+  margin: 3px;
+}
+.itemId {
+  margin-right: 5px;
+}
+#agSample {
+  display: block;
+  margin-top: 20px;
+}
+#agProblem,
+#agSolution {
+  padding-left: 20px;
+}
+.genListItem {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.genListItem:hover {
+  color: #b5b5b5;
+}
+button {
+  background-color: #ab3737;
+  border: none;
+  color: #f2dede;
+  padding: 5px 40px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin: auto;
+  margin-top: 20px;
+  cursor: pointer;
+}
+button:active {
+  color: #a89c9c;
+  background-color: #8a2323;
+}
+
+@media only screen and (max-width: 790px) {
+  #mainContent {
+    display: grid;
+    justify-items: center;
+  }
+  .col {
+    width: 95%;
+  }
+}
+input {
+  background-color: #38393a;
+  border: none;
+  border-bottom: 2px solid #ab3737;
+  color: #e3e3e3;
+  padding: 2px 0;
+  font-size: 1rem;
+}
+#agKwargInputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#agKwargInputs > * + * {
+  margin-top: 2px;
+}
+p#agProblem,
+p#agSolution {
+  background: #ab373755;
+  padding: 8px 16px;
+  margin: 4px 0;
+}

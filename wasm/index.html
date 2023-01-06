@@ -1,25 +1,111 @@
 <!doctype html>
 <html>
+
 <head>
-<script src="https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="../main.css">
-<meta name="viewport" content="width=device-width">
+	<script src="https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./main.css">
+	<meta name="viewport" content="width=device-width">
+
+	<style>
+		.splash {
+			position: fixed;
+			inset: 0;
+			z-index: 1000;
+			background-color: #2c2c2c;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 16px;
+		}
+
+		.splash-loader {
+			width: 48px;
+			height: 48px;
+			display: inline-block;
+			position: relative;
+		}
+
+		.splash-loader::after,
+		.splash-loader::before {
+			content: '';
+			box-sizing: border-box;
+			width: 48px;
+			height: 48px;
+			border-radius: 50%;
+			border: 2px solid #FFF;
+			position: absolute;
+			left: 0;
+			top: 0;
+			animation: animloader 2s linear infinite;
+		}
+
+		.splash-loader::after {
+			animation-delay: -1s;
+		}
+
+		@keyframes animloader {
+			0% {
+				transform: scale(0);
+				opacity: 1;
+			}
+
+			100% {
+				transform: scale(1);
+				opacity: 0;
+			}
+		}
+	</style>
+
+
+	<script>
+		window.MathJax = {
+			tex: {
+				inlineMath: [['$', '$'], ['\\(', '\\)']]
+			},
+			startup: {
+				ready: () => {
+					console.log('MathJax is loaded, but not yet initialized');
+					MathJax.startup.defaultReady();
+					MathJax.startup.promise.then(() => {
+						console.log('MathJax initial typesetting complete');
+					});
+					console.log('MathJax is initialized, and the initial typeset is queued');
+				},
+				pageReady: () => {
+					return MathJax.startup.defaultPageReady().then(() => {
+						console.log('MathJax initial typesetting complete');
+					});
+				}
+			}
+		};
+	</script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body>
 	<h1>Mathgenerator</h1>
 	<a href="https://github.com/lukew3/mathgenerator">Github</a>
 	<div id="pipBox" class="customBox">pip install mathgenerator</div>
-	<p>mathgenerator is a python package that enables users to easily generate a variety of math problems, with customizable settings.</p>
-	<hr></hr>
+	<p>mathgenerator is a python package that enables users to easily generate a variety of math problems, with
+		customizable settings.</p>
+	<hr>
+	</hr>
 	<h2>Demo</h2>
-	
+
+	<div id="splash" class="splash">
+		<div class="splash-loader"></div>
+		Initializing...
+	</div>
+
 	<div id="mainContent">
 		<div class="col">
 			<div id="generatorBox" class="customBox">
-				<p id="agTitle" >Addition</p>
+				<p id="agTitle">Addition</p>
 				<div class="agItem">
 					<p class="agLabel">function name:</p>
 					<p id="agFunctionName">addition</p>
@@ -30,20 +116,29 @@
 				</div>
 				<div class="agItem">
 					<p class="agLabel">kwargs:</p>
-					<p id="agKwargs">maxSum=99, maxAddend=50</p>
+					<div id="agKwargInputs">
+						<label>
+							maxSum:
+							<input name="maxSum" value="99" type="number" />
+						</label>
+						<label>
+							maxAddend:
+							<input name=" maxAddend" value="50" type="number" />
+						</label>
+					</div>
 				</div>
-				<div class="agItem">
+				<div class=" agItem">
 					<p class="agLabel">id:</p>
 					<p id="agId">0</p>
 				</div>
 				<div id="agSample">
 					<div>
 						<p class="agLabel">Problem:</p>
-						<p id="agProblem">2+2=</p>
+						<p id="agProblem">$40+33=$</p>
 					</div>
 					<div>
 						<p class="agLabel">Solution:</p>
-						<p id="agSolution">4</p>
+						<p id="agSolution">$73$</p>
 					</div>
 				</div>
 				<button id="newProblemButton" onClick="generateSample()">Generate</button>
@@ -59,4 +154,5 @@
 	</div>
 	<script type="text/javascript" src="./app.js"></script>
 </body>
+
 </html>

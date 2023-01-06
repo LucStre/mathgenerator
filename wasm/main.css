@@ -67,34 +67,37 @@ h2 {
 .agItem + .agItem {
   margin-top: 4px;
 }
-#generatorList {
+.generatorListBox {
   padding: 30px;
 }
-#generatorList * {
+.generatorListBox * {
   text-align: left;
 }
-#generatorList h3 {
-  margin: 0 0 10px 3px;
+.generatorListBox h3 {
+  margin: 0;
 }
-#generatorList > p {
+.generatorListBox .generatorListHeader {
+  margin-bottom: 12px;
+}
+.generatorListBox > p {
   margin: 10px 0;
 }
-#generatorList details + details {
+.generatorListBox details + details {
   margin-top: 8px;
 }
-#generatorList details {
+.generatorListBox details {
   padding: 16px 20px;
   border: 2px solid #ab3737;
 }
-#generatorList details summary {
+.generatorListBox details summary {
   margin-inline-start: -10px;
   font-size: larger;
   color: #e3e3e3;
 }
-#generatorList details summary:hover {
+.generatorListBox details summary:hover {
   color: #b5b5b5;
 }
-#generatorList details[open] summary {
+.generatorListBox details[open] summary {
   color: #b5b5b5;
   padding-bottom: 8px;
 }

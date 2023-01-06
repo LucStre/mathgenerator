@@ -662,3 +662,39 @@ def volume_sphere(max_radius=100):
     problem = f"Volume of sphere with radius ${r} m = $"
     solution = f"${ans} m^3$"
     return problem, solution
+
+def equation_of_line_from_three_points(max_coordinate=20, min_coordinate=-20):
+    r"""Equation of line from three points
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | What is the equation of the line between points $(1,-1,2)$ and $(3,2,0)$ and $(1,-2,1)$ in standard form? | $-5x+2y-2z=-11$ |
+    """
+    x1 = random.randint(min_coordinate, max_coordinate)
+    x2 = random.randint(min_coordinate, max_coordinate)
+    x3 = random.randint(min_coordinate, max_coordinate)
+
+    y1 = random.randint(min_coordinate, max_coordinate)
+    y2 = random.randint(min_coordinate, max_coordinate)
+    y3 = random.randint(min_coordinate, max_coordinate)
+
+    z1 = random.randint(min_coordinate, max_coordinate)
+    z2 = random.randint(min_coordinate, max_coordinate)
+    z3 = random.randint(min_coordinate, max_coordinate)
+
+    coeff_x = (y2 - y1)*(z3-z1) - (y3-y1)*(z2-z1)
+    coeff_y = -((x2 - x1)*(z3-z1) - (x3-x1)*(z2-z1))
+    coeff_z = (x2 - x1)*(y3-y1) - (x3-x1)*(y2-y1)
+    constant = coeff_x * (-x1) + coeff_y * (-y1) + coeff_z * (-z1)
+
+    str_coeff_y = "+"+str(coeff_y) if coeff_y >= 0 else str(coeff_y)
+    str_coeff_z = "+"+str(coeff_z) if coeff_z >= 0 else str(coeff_z)
+
+
+    problem = f"What is the equation of the line between points $({x1},{y1},{z1})$ and $({x2},{y2},{z2})$ and $({x3},{y3},{z3})$ in standard form?"
+
+    if constant > 0:
+        solution = str(coeff_x) + "x " + str_coeff_y +"y " + str_coeff_z +"z = " + str(-constant)
+    else:
+        solution = str(coeff_x) + "x " + str_coeff_y +"y " + str_coeff_z +"z = " + str(constant)
+    return problem, f'${solution}$'

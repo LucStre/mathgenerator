@@ -3,6 +3,7 @@ import random
 import math
 import fractions
 import sympy
+from fractions import Fraction
 
 
 def basic_algebra(max_variable=10):
@@ -722,4 +723,65 @@ def vector_dot(min_val=-20, max_val=20):
 
     problem = rf'${a}\cdot{b}=$'
     solution = f'${c}$'
+    return problem, solution
+
+
+def vector_add(min_val=-20,max_val=20):
+    r"""Result of adding 2 vectors
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | $[12, 1, 8]\cplus [-9, 8, 1]=$ | $[3, 9, 9]$ |
+    """
+    a = [random.randint(min_val, max_val) for i in range(3)]
+    b = [random.randint(min_val, max_val) for i in range(3)]
+    c = [
+        a[0] + b[0],a[1] + b[1], a[2] + b[2]
+    ]
+
+    problem = rf"${a} \tplus {b} = $"
+    solution = f"${c}$"
+    return problem, solution
+
+def vector_sub(min_val=-20,max_val=20):
+    r"""Result of substracting 2 vectors
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | $[12, 1, 8]\cminus [-9, 8, 1]=$ | $[21, -7, 7]$ |
+    """
+    a = [random.randint(min_val, max_val) for i in range(3)]
+    b = [random.randint(min_val, max_val) for i in range(3)]
+    c = [
+        a[0] - b[0],a[1] - b[1], a[2] - b[2]
+    ]
+
+    problem = rf"${a} \tminus {b} = $"
+    solution = f"${c}$"
+    return problem, solution
+
+
+def vector_projection(min_val=-20,max_val=20):
+    r"""Result of projecting a vector on a vector
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | $[1, 1, 2]\cprojected on [1, -1, 4]=$ | $[4/9, -4/9, 16/9]$ |
+    """
+    a = [random.randint(min_val, max_val) for i in range(3)]
+    b = [random.randint(min_val, max_val) for i in range(3)]
+
+    b_length = b[0]**2+b[1]**2+b[2]**2 
+    a_dot_b = a[0]*b[0]+a[1]*b[1]+a[2]*b[2]
+
+    coeff = a_dot_b/b_length
+
+    xc = str(Fraction(coeff*b[0]).limit_denominator())
+    yc = str(Fraction(coeff*b[1]).limit_denominator())
+    zc = str(Fraction(coeff*b[2]).limit_denominator())
+
+    c=[xc,yc,zc]
+
+    problem = rf"${a} \tprojected on {b} = $"
+    solution = f"${c}$"
     return problem, solution

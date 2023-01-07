@@ -118,3 +118,27 @@ def trig_differentiation():
     problem = rf'$\frac{{d}}{{dx}}({problem})=$'
 
     return problem, solution
+
+def generate_equation(x,max_elements,min_value,max_value,min_exponent,max_exponent):
+    for i in range(random.randint(1, max_elements)):
+        element = random.randint(min_value, max_value)*x**random.randint(min_exponent, max_exponent)
+        if i == 0:
+            equation = element
+        else:
+            equation +=element
+    return equation
+
+def indefinite_integral(max_elements=4, min_value=-5, max_value=5, min_exponent=-5, max_exponent=5):
+    r"""Indefinite Integral
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | The indefinite integral of the equation $5x^2 + 5 = $ | $5^3/3 + 5x + constant$ |
+    """
+    x = sympy.Symbol('x')
+
+    equation = generate_equation(x, max_elements, min_value, max_value, min_exponent, max_exponent)
+    result = sympy.integrate(equation, x)
+
+    problem = f"The indefinite integral of the equation ${equation}$"
+    return problem, f'${result}$ + constant'

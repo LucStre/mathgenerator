@@ -66,21 +66,6 @@
 			tex: {
 				inlineMath: [['$', '$'], ['\\(', '\\)']]
 			},
-			startup: {
-				ready: () => {
-					console.log('MathJax is loaded, but not yet initialized');
-					MathJax.startup.defaultReady();
-					MathJax.startup.promise.then(() => {
-						console.log('MathJax initial typesetting complete');
-					});
-					console.log('MathJax is initialized, and the initial typeset is queued');
-				},
-				pageReady: () => {
-					return MathJax.startup.defaultPageReady().then(() => {
-						console.log('MathJax initial typesetting complete');
-					});
-				}
-			}
 		};
 	</script>
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -122,16 +107,16 @@
 					<p class="agLabel">kwargs:</p>
 					<div id="agKwargInputs">
 						<label>
-							maxSum:
-							<input name="maxSum" value="99" type="number" />
+							max_sum:
+							<input name="max_sum" value="99" type="number" />
 						</label>
 						<label>
-							maxAddend:
-							<input name=" maxAddend" value="50" type="number" />
+							max_addend:
+							<input name=" max_addend" value="50" type="number" />
 						</label>
 					</div>
 				</div>
-				<button>Reset to default</button>
+				<button id="resetKwargs">Reset to default</button>
 				<div id="agSample">
 					<div>
 						<p class="agLabel">Problem:</p>

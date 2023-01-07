@@ -195,6 +195,5 @@ def sequence_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
         convergence = "converges"
     else:
         convergence = "diverges"
-    
     problem = f"The infinite sum of the equation ${equation}$"
     return problem, f'${result}$ \approx ${round(result.evalf(), 2)} ${convergence}$'

@@ -327,7 +327,7 @@ def trigonometric_equations(functions=["sin", "cos", "tan"]):
     | $\sin(x) = 0.5$ | $0.52$ |
     """
     function = random.choice(functions)
-    value = round(random.uniform(-1,1), 2)
+    value = round(random.uniform(-1, 1), 2)
     problem = rf"$\{function}(x) = {value} $"
     expression = 'math.a' + function + '(value)'
     res = round(eval(expression), 2)

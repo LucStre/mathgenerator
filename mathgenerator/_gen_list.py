@@ -129,4 +129,5 @@ gen_list = [
     ("indefinite_integral", "calculus"),
     ("limit", "calculus"),
     ("limit_of_sum", "calculus"),
+    ("sequence_sum", "calculus"),
 ]

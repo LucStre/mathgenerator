@@ -177,3 +177,24 @@ def limit_of_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
 
     problem = f"The limit of the sum ${equation}$ from ${1}$ to ${n}$ that tends to ${sympy.oo}$"
     return problem, f'${result}$ \approx ${round(result.evalf(), 2)}$'
+
+
+def sequence_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
+    r"""Infinite sum of sequence
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | The infinite sum of $\sum_{n=1}^{\infty} 1/n^{2}$ | $(\pi^{2})/6 \approx 1.64$ |
+    """
+    n = sympy.Symbol('n')
+
+    equation = generate_equation(n, 1, min_value, max_value, min_exponent, max_exponent)
+    sum = sympy.Sum(equation, (n, 1, sympy.oo))
+    result = sum.doit()
+    if sum.is_convergent():
+        convergence = "converges"
+    else:
+        convergence = "diverges"
+    
+    problem = f"The infinite sum of the equation ${equation}$"
+    return problem,  f'${result}$ \approx ${round(result.evalf(), 2)} ${convergence}$'

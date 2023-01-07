@@ -128,4 +128,5 @@ gen_list = [
     ("simplify_square_root", "basic_math"),
     ("indefinite_integral", "calculus"),
     ("limit", "calculus"),
+    ("limit_of_sum", "calculus"),
 ]

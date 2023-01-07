@@ -127,4 +127,5 @@ gen_list = [
     ("complementary_and_supplementary_angle", "geometry"),
     ("simplify_square_root", "basic_math"),
     ("indefinite_integral", "calculus"),
+    ("limit", "calculus"),
 ]

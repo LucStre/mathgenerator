@@ -119,6 +119,7 @@ def trig_differentiation():
 
     return problem, solution
 
+
 def generate_equation(x,max_elements,min_value,max_value,min_exponent,max_exponent):
     for i in range(random.randint(1, max_elements)):
         element = random.randint(min_value, max_value)*x**random.randint(min_exponent, max_exponent)
@@ -127,6 +128,7 @@ def generate_equation(x,max_elements,min_value,max_value,min_exponent,max_expone
         else:
             equation +=element
     return equation
+
 
 def indefinite_integral(max_elements=4, min_value=-5, max_value=5, min_exponent=-5, max_exponent=5):
     r"""Indefinite Integral
@@ -142,3 +144,19 @@ def indefinite_integral(max_elements=4, min_value=-5, max_value=5, min_exponent=
 
     problem = f"The indefinite integral of the equation ${equation}$"
     return problem, f'${result}$ + constant'
+
+
+def limit(x0=sympy.oo, max_elements=4, min_value=-5, max_value=5, min_exponent=-5, max_exponent=5):
+    r"""Limit
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | The limit of the equation $\lim_{x \to 2} x^{2}$ | $4$ |
+    """
+    x = sympy.Symbol('x')
+
+    equation = generate_equation(x, max_elements, min_value, max_value, min_exponent, max_exponent)
+    result = sympy.limit(equation, x, x0)
+    
+    problem = f"The limit of the equation ${equation}$ that tends to ${x0}$"
+    return problem, f'${result}$'

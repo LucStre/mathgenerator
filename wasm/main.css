@@ -178,4 +178,9 @@ p#agSolution {
   padding: 8px 16px;
   margin: 4px 0;
 }
-de
+code {
+  background-color: #eee2;
+  border-radius: 3px;
+  font-family: courier, monospace;
+  padding: 0 3px;
+}

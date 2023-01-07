@@ -1,4 +1,6 @@
 const d_splash = document.getElementById('splash');
+const d_splashMessage = document.getElementById('splash-message');
+const d_splashProgress = document.getElementById('splash-progress');
 
 const d_genList = document.getElementById('generatorList');
 const d_genListOrig = d_genList.innerHTML;
@@ -117,18 +119,28 @@ function displayGenList(genListToRender, open = false) {
 }
 
 (async () => {
+  d_splashMessage.innerHTML = 'Loading <code>pyodide</code>...';
   pyodide = await loadPyodide({
     indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.20.0/full/',
   });
+
+  d_splashMessage.innerHTML = 'Loading <code>micropip</code>...';
   await pyodide.loadPackage('micropip');
   const micropip = pyodide.pyimport('micropip');
+
+  d_splashMessage.innerHTML = 'Installing <code>mathgenerator</code>...';
   await micropip.install('mathgenerator');
+
+  d_splashMessage.innerHTML = 'Loading <code>mathgenerator</code>...';
   await pyodide.runPython('import mathgenerator');
-  // Build generator list
+
+  d_splashMessage.innerHTML = 'Loading list of generators...';
   genList = await pyodide.runPython('mathgenerator.getGenList()');
   displayGenList(genList);
 
+  d_splashMessage.innerHTML = 'Finishing up...';
   generateSample();
+
   d_splash.style.display = 'none';
 
   // Set up search

@@ -209,7 +209,7 @@ def expanding(range_x1=10,
         p1 = p1[1:]
     if p3 == "+1":
         p3 = ""
-    elif p3[0] == "+":
+    elif len(p3) > 0 and p3[0] == "+":
         p3 = p3[1:]
 
     if c1 == "+1":

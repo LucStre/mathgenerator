@@ -120,13 +120,13 @@ def trig_differentiation():
     return problem, solution
 
 
-def generate_equation(x,max_elements,min_value,max_value,min_exponent,max_exponent):
+def generate_equation(x, max_elements, min_value, max_value, min_exponent, max_exponent):
     for i in range(random.randint(1, max_elements)):
-        element = random.randint(min_value, max_value)*x**random.randint(min_exponent, max_exponent)
+        element = random.randint(min_value, max_value) * x**random.randint(min_exponent, max_exponent)
         if i == 0:
             equation = element
         else:
-            equation +=element
+            equation += element
     return equation
 
 
@@ -157,7 +157,7 @@ def limit(x0=sympy.oo, max_elements=4, min_value=-5, max_value=5, min_exponent=-
 
     equation = generate_equation(x, max_elements, min_value, max_value, min_exponent, max_exponent)
     result = sympy.limit(equation, x, x0)
-    
+
     problem = f"The limit of the equation ${equation}$ that tends to ${x0}$"
     return problem, f'${result}$'
 
@@ -169,7 +169,7 @@ def limit_of_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
     | --- | --- |
     | The limit of the sum $\lim_{n \to \infty} \sum_{k=1}^{n} 3/k^{4}/$ | $\pi^{4}/30 \approx 3.25$ |
     """
-    n,k = sympy.Symbol('n'), sympy.Symbol('k')
+    n, k = sympy.Symbol('n'), sympy.Symbol('k')
 
     equation = generate_equation(k, 1, min_value, max_value, min_exponent, max_exponent)
     sum = sympy.Sum(equation, (k, 1, n)).doit()
@@ -197,4 +197,4 @@ def sequence_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
         convergence = "diverges"
     
     problem = f"The infinite sum of the equation ${equation}$"
-    return problem,  f'${result}$ \approx ${round(result.evalf(), 2)} ${convergence}$'
+    return problem, f'${result}$ \approx ${round(result.evalf(), 2)} ${convergence}$'

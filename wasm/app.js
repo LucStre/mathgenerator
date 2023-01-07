@@ -14,16 +14,21 @@ const d_prob = document.getElementById('agProblem');
 const d_sol = document.getElementById('agSolution');
 
 let pyodide,
-  genList,
+  genDict,
   curId = 0;
 
 function handleSearch() {
   const search = document.getElementById('search').value;
 
-  if (!search) return displayGenList(genList);
+  if (!search) return displayGenDict();
 
-  displayGenList(
-    [...genList].filter((g) => g.get(1).toLowerCase().includes(search.toLowerCase())),
+  displayGenDict(
+    [...genDict.keys()]
+      .filter((g) => g.toLowerCase().includes(search.toLowerCase()))
+      .reduce((acc, curr) => {
+        acc.set(curr, genDict.get(curr));
+        return acc;
+      }, new Map()),
     true
   );
 }
@@ -45,8 +50,6 @@ function getKwargs() {
     })
     .join(', ');
 
-  console.log('kwargs', kwargs);
-
   return kwargs;
 }
 
@@ -63,13 +66,14 @@ async function setGenerator(id) {
   // Set global curId
   curId = id;
   // Set active generator text
-  let g = genList.get(id);
-  d_id.innerHTML = g.get(0);
-  d_title.innerHTML = g.get(1);
-  d_funcName.innerHTML = g.get(3);
-  d_subject.innerHTML = g.get(4);
-  // d_kwargs.innerHTML = [...g.get(5)].join(', ');
-  d_kwargInputs.innerHTML = [...g.get(5)]
+  let g = [...genDict.values()][id];
+  d_id.innerHTML = g.get('id');
+  d_title.innerHTML = g.get('name');
+  d_funcName.innerHTML = g.get('name');
+  d_subject.innerHTML = g.get('subject');
+  // d_kwargs.innerHTML = g.get("kwargs").join(', ');
+  d_kwargInputs.innerHTML = g
+    .get('kwargs')
     .map((input) => {
       const [name, valueRaw] = input.split('=');
       const valueIsNumber = !isNaN(valueRaw);
@@ -95,15 +99,15 @@ async function setGenerator(id) {
   generateSample();
 }
 
-function displayGenList(genListToRender, open = false) {
+function displayGenDict(dict = genDict, open = false) {
   const groups = {};
-  for (let gen of genListToRender) {
+  for (const gen of dict.values()) {
     var div = document.createElement('div');
     div.className = 'generatorListItem';
-    div.innerHTML = `<p class='genListItem'>${gen.get(1)}</p>`;
-    div.onclick = () => setGenerator(gen.get(0));
-    groups[gen.get(4)] = groups[gen.get(4)] || [];
-    groups[gen.get(4)].push(div);
+    div.innerHTML = `<p class='genListItem'>${gen.get('name')}</p>`;
+    div.onclick = () => setGenerator(gen.get('id'));
+    groups[gen.get('subject')] = groups[gen.get('subject')] || [];
+    groups[gen.get('subject')].push(div);
   }
   d_genList.innerHTML = d_genListOrig;
   for (let group in groups) {
@@ -129,20 +133,51 @@ function displayGenList(genListToRender, open = false) {
   const micropip = pyodide.pyimport('micropip');
 
   d_splashMessage.innerHTML = 'Installing <code>mathgenerator</code>...';
-  await micropip.install('mathgenerator');
+  await micropip.install('./mathgenerator-1.5.0-py3-none-any.whl');
 
   d_splashMessage.innerHTML = 'Loading <code>mathgenerator</code>...';
   await pyodide.runPython('import mathgenerator');
 
   d_splashMessage.innerHTML = 'Loading list of generators...';
-  genList = await pyodide.runPython('mathgenerator.getGenList()');
-  displayGenList(genList);
+  await pyodide.runPython(`import mathgenerator
+import inspect
+
+genList = mathgenerator.get_gen_list()
+
+def get_default_args(func):
+    signature = inspect.signature(func)
+    return {
+        k: v.default
+        for k, v in signature.parameters.items()
+        if v.default is not inspect.Parameter.empty
+    }
+
+data = {}
+for id, gen in enumerate(genList):
+    samples = []
+    genFn = mathgenerator.get_by_id(id) 
+    for _ in range(10):
+        p, s = genFn()
+        samples.append({"problem": p, "solution": s})
+    data[gen[0]] = {
+        "id": id,
+        "name": gen[0],
+        "function_name": gen[0],
+        "subject": gen[1],
+        "kwargs": str(inspect.signature(genFn))[1:-1].split(", "),
+        "samples": samples
+    }
+`);
+  genDict = pyodide.globals.get('data').toJs();
+  displayGenDict();
 
   d_splashMessage.innerHTML = 'Finishing up...';
-  generateSample();
+  setGenerator(curId);
 
   d_splash.style.display = 'none';
 
   // Set up search
   document.getElementById('search').oninput = handleSearch;
+
+  document.getElementById('resetKwargs').onclick = () => setGenerator(curId);
 })();

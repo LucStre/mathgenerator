@@ -1,20 +1,30 @@
 import mathgenerator
 import json
+import inspect
 
-genList = mathgenerator.getGenList()
+genList = mathgenerator.get_gen_list()
+
+def get_default_args(func):
+    signature = inspect.signature(func)
+    return {
+        k: v.default
+        for k, v in signature.parameters.items()
+        if v.default is not inspect.Parameter.empty
+    }
 
 data = []
-for gen in genList:
+for id, gen in enumerate(genList):
     samples = []
+    genFn = mathgenerator.get_by_id(id) 
     for _ in range(10):
-        p, s = mathgenerator.genById(gen[0])
+        p, s = genFn()
         samples.append({"problem": p, "solution": s})
     data.append({
-        "id": gen[0],
-        "name": gen[1],
-        "function_name": gen[3],
-        "subject": gen[4],
-        "kwargs": gen[5],
+        "id": id,
+        "name": gen[0],
+        "function_name": gen[0],
+        "subject": gen[1],
+        "kwargs": str(inspect.signature(genFn))[1:-1].split(", "),
         "samples": samples
     })
 

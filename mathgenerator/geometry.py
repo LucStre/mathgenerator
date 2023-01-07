@@ -664,7 +664,7 @@ def volume_sphere(max_radius=100):
     return problem, solution
 
 def equation_of_line_from_three_points(max_coordinate=20, min_coordinate=-20):
-    r"""Equation of line from three points
+    """Equation of line from three points
 
     | Ex. Problem | Ex. Solution |
     | --- | --- |

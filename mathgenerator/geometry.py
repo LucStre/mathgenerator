@@ -325,13 +325,22 @@ def pythagorean_theorem(max_length=20):
     | Ex. Problem | Ex. Solution |
     | --- | --- |
     | What is the hypotenuse of a right triangle given the other two sides have lengths $9$ and $10$? | $13.45$ |
+    | What is the side of a right triangle given the hypotenuse has length $15$ and other side $5$? | $14.14$ |
     """
-    a = random.randint(1, max_length)
-    b = random.randint(1, max_length)
-    c = round((a ** 2 + b ** 2) ** 0.5, 2)
+    if random.random() < 0.5:
+        a = random.randint(1, max_length)
+        b = random.randint(1, max_length)
+        c = round((a ** 2 + b ** 2) ** 0.5, 2)
 
-    problem = f"What is the hypotenuse of a right triangle given the other two sides have lengths ${a}$ and ${b}$?"
-    solution = f"${c}$"
+        problem = f"What is the hypotenuse of a right triangle given the other two sides have lengths ${a}$ and ${b}$?"
+        solution = f"${c}$"
+    else:
+        a = random.randint(1, max_length - 1)
+        c = random.randint(a + 1, max_length)
+        b = round((c ** 2 - a ** 2) ** 0.5, 2)
+
+        problem = f"What is the side of a right triangle given the hypotenuse has length ${c}$ and other side ${a}$?"
+        solution = f"${b}$"
     return problem, solution
 
 

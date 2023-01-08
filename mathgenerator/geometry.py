@@ -319,19 +319,44 @@ def perimeter_of_polygons(max_sides=12, max_length=120):
     return problem, f'${solution}$'
 
 
+def trigonometric_equations(functions=["sin", "cos", "tan"]):
+    r"""Trigonometric Equations
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | $\sin(x) = 0.5$ | $0.52$ |
+    """
+    function = random.choice(functions)
+    value = round(random.uniform(-1, 1), 2)
+    problem = rf"$\{function}(x) = {value} $"
+    expression = 'math.a' + function + '(value)'
+    res = round(eval(expression), 2)
+    solution = f"${res}$"
+    return problem, solution
+
+
 def pythagorean_theorem(max_length=20):
     """Pythagorean Theorem
 
     | Ex. Problem | Ex. Solution |
     | --- | --- |
     | What is the hypotenuse of a right triangle given the other two sides have lengths $9$ and $10$? | $13.45$ |
+    | What is the side of a right triangle given the hypotenuse has length $15$ and other side $5$? | $14.14$ |
     """
-    a = random.randint(1, max_length)
-    b = random.randint(1, max_length)
-    c = round((a ** 2 + b ** 2) ** 0.5, 2)
+    if random.random() < 0.5:
+        a = random.randint(1, max_length)
+        b = random.randint(1, max_length)
+        c = round((a ** 2 + b ** 2) ** 0.5, 2)
 
-    problem = f"What is the hypotenuse of a right triangle given the other two sides have lengths ${a}$ and ${b}$?"
-    solution = f"${c}$"
+        problem = f"What is the hypotenuse of a right triangle given the other two sides have lengths ${a}$ and ${b}$?"
+        solution = f"${c}$"
+    else:
+        a = random.randint(1, max_length - 1)
+        c = random.randint(a + 1, max_length)
+        b = round((c ** 2 - a ** 2) ** 0.5, 2)
+
+        problem = f"What is the side of a right triangle given the hypotenuse has length ${c}$ and other side ${a}$?"
+        solution = f"${b}$"
     return problem, solution
 
 

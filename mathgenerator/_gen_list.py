@@ -128,6 +128,7 @@ gen_list = [
     ("limit", "calculus"),
     ("limit_of_sum", "calculus"),
     ("sequence_sum", "calculus"),
+    ("trigonometric_equations", "geometry"),
     ("vector_add", "algebra"),
     ("vector_sub", "algebra"),
     ("vector_projection", "algebra"),

@@ -743,6 +743,7 @@ def vector_add(min_val=-20, max_val=20):
     solution = f"${c}$"
     return problem, solution
 
+
 def vector_sub(min_val=-20, max_val=20):
     r"""Result of substracting 2 vectors
 
@@ -771,14 +772,14 @@ def vector_projection(min_val=-20, max_val=20):
     a = [random.randint(min_val, max_val) for i in range(3)]
     b = [random.randint(min_val, max_val) for i in range(3)]
 
-    b_length = b[0]**2+b[1]**2+b[2]**2 
-    a_dot_b = a[0]*b[0]+a[1]*b[1]+a[2]*b[2]
+    b_length = b[0]**2 + b[1]**2 + b[2]**2 
+    a_dot_b = a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 
-    coeff = a_dot_b/b_length
+    coeff = a_dot_b / b_length
 
-    xc = str(Fraction(coeff*b[0]).limit_denominator())
-    yc = str(Fraction(coeff*b[1]).limit_denominator())
-    zc = str(Fraction(coeff*b[2]).limit_denominator())
+    xc = str(Fraction(coeff * b[0]).limit_denominator())
+    yc = str(Fraction(coeff * b[1]).limit_denominator())
+    zc = str(Fraction(coeff * b[2]).limit_denominator())
 
     c=[xc, yc, zc]
 

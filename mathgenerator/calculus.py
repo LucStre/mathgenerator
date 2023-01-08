@@ -146,7 +146,7 @@ def indefinite_integral(max_elements=4, min_value=-5, max_value=5, min_exponent=
     return problem, f'${sympy.latex(result)}$ + constant'
 
 
-def limit(x0=sympy.oo, max_elements=4, min_value=-5, max_value=5, min_exponent=-5, max_exponent=5):
+def limit(x0=5, max_elements=4, min_value=-5, max_value=5, min_exponent=-5, max_exponent=5):
     r"""Limit
 
     | Ex. Problem | Ex. Solution |
@@ -167,7 +167,7 @@ def limit_of_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
 
     | Ex. Problem | Ex. Solution |
     | --- | --- |
-    | The limit of the sum $\lim_{n \to \infty} \sum_{k=1}^{n} 3/k^{4}/$ | $\pi^{4}/30 \approx 3.25$ |
+    | The limit of the sum $\lim_{n \to \infty} \sum_{k=1}^{n} 3/k^{4}/$ | $\pi^{4}/30 = 3.25$ |
     """
     n, k = sympy.Symbol('n'), sympy.Symbol('k')
 
@@ -175,8 +175,8 @@ def limit_of_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
     sum = sympy.Sum(equation, (k, 1, n)).doit()
     result = sympy.limit(sum, n, sympy.oo)
 
-    problem = f"The limit of the sum ${sympy.latex(equation)}$ from ${1}$ to ${n}$ that tends to \infty"
-    return problem, f'${sympy.latex(result)} \approx {round(result.evalf(), 2)}$'
+    problem = f"The limit of the sum ${sympy.latex(equation)}$ from ${1}$ to ${n}$ that tends to $\infty$"
+    return problem, f'${sympy.latex(result)}$ = ${round(result.evalf(), 2)}$'
 
 
 def sequence_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
@@ -184,7 +184,7 @@ def sequence_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
 
     | Ex. Problem | Ex. Solution |
     | --- | --- |
-    | The infinite sum of $\sum_{n=1}^{\infty} 1/n^{2}$ | $(\pi^{2})/6 \approx 1.64$ |
+    | The infinite sum of $\sum_{n=1}^{\infty} 1/n^{2}$ | $(\pi^{2})/6 = 1.64$ |
     """
     n = sympy.Symbol('n')
 
@@ -192,4 +192,4 @@ def sequence_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
     sum = sympy.Sum(equation, (n, 1, sympy.oo))
     result = sum.doit()
     problem = f"The infinite sum of the equation ${sympy.latex(equation)}$"
-    return problem, f'${sympy.latex(result)} \approx {round(result.evalf(), 2)}'
+    return problem, f'${sympy.latex(result)}$ = ${round(result.evalf(), 2)}$'

@@ -142,8 +142,8 @@ def indefinite_integral(max_elements=4, min_value=-5, max_value=5, min_exponent=
     equation = generate_equation(x, max_elements, min_value, max_value, min_exponent, max_exponent)
     result = sympy.integrate(equation, x)
 
-    problem = f"The indefinite integral of the equation ${equation}$"
-    return problem, f'${result}$ + constant'
+    problem = f"The indefinite integral of the equation ${sympy.latex(equation)}$"
+    return problem, f'${sympy.latex(result)}$ + constant'
 
 
 def limit(x0=sympy.oo, max_elements=4, min_value=-5, max_value=5, min_exponent=-5, max_exponent=5):
@@ -158,8 +158,8 @@ def limit(x0=sympy.oo, max_elements=4, min_value=-5, max_value=5, min_exponent=-
     equation = generate_equation(x, max_elements, min_value, max_value, min_exponent, max_exponent)
     result = sympy.limit(equation, x, x0)
 
-    problem = f"The limit of the equation ${equation}$ that tends to ${x0}$"
-    return problem, f'${result}$'
+    problem = f"The limit of the equation ${sympy.latex(equation)}$ that tends to ${x0}$"
+    return problem, f'${sympy.latex(result)}$'
 
 
 def limit_of_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
@@ -175,8 +175,8 @@ def limit_of_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
     sum = sympy.Sum(equation, (k, 1, n)).doit()
     result = sympy.limit(sum, n, sympy.oo)
 
-    problem = f"The limit of the sum ${equation}$ from ${1}$ to ${n}$ that tends to ${sympy.oo}$"
-    return problem, f'${result}$ \approx ${round(result.evalf(), 2)}$'
+    problem = f"The limit of the sum ${sympy.latex(equation)}$ from ${1}$ to ${n}$ that tends to \infty"
+    return problem, f'${sympy.latex(result)} \approx {round(result.evalf(), 2)}$'
 
 
 def sequence_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
@@ -191,9 +191,5 @@ def sequence_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
     equation = generate_equation(n, 1, min_value, max_value, min_exponent, max_exponent)
     sum = sympy.Sum(equation, (n, 1, sympy.oo))
     result = sum.doit()
-    if sum.is_convergent():
-        convergence = "converges"
-    else:
-        convergence = "diverges"
-    problem = f"The infinite sum of the equation ${equation}$"
-    return problem, f'${result}$ \approx ${round(result.evalf(), 2)} ${convergence}$'
+    problem = f"The infinite sum of the equation ${sympy.latex(equation)}$"
+    return problem, f'${sympy.latex(result)} \approx {round(result.evalf(), 2)}'

@@ -118,3 +118,78 @@ def trig_differentiation():
     problem = rf'$\frac{{d}}{{dx}}({problem})=$'
 
     return problem, solution
+
+
+def generate_equation(x, max_elements, min_value, max_value, min_exponent, max_exponent):
+    for i in range(random.randint(1, max_elements)):
+        element = random.randint(min_value, max_value) * x**random.randint(min_exponent, max_exponent)
+        if i == 0:
+            equation = element
+        else:
+            equation += element
+    return equation
+
+
+def indefinite_integral(max_elements=4, min_value=-5, max_value=5, min_exponent=-5, max_exponent=5):
+    r"""Indefinite Integral
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | The indefinite integral of the equation $5x^2 + 5 = $ | $5^3/3 + 5x + constant$ |
+    """
+    x = sympy.Symbol('x')
+
+    equation = generate_equation(x, max_elements, min_value, max_value, min_exponent, max_exponent)
+    result = sympy.integrate(equation, x)
+
+    problem = f"The indefinite integral of the equation ${sympy.latex(equation)}$"
+    return problem, f'${sympy.latex(result)}$ + constant'
+
+
+def limit(x0=5, max_elements=4, min_value=-5, max_value=5, min_exponent=-5, max_exponent=5):
+    r"""Limit
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | The limit of the equation $\lim_{x \to 2} x^{2}$ | $4$ |
+    """
+    x = sympy.Symbol('x')
+
+    equation = generate_equation(x, max_elements, min_value, max_value, min_exponent, max_exponent)
+    result = sympy.limit(equation, x, x0)
+
+    problem = f"The limit of the equation ${sympy.latex(equation)}$ that tends to ${x0}$"
+    return problem, f'${sympy.latex(result)}$'
+
+
+def limit_of_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
+    r"""Limit of sum
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | The limit of the sum $\lim_{n \to \infty} \sum_{k=1}^{n} 3/k^{4}/$ | $\pi^{4}/30 = 3.25$ |
+    """
+    n, k = sympy.Symbol('n'), sympy.Symbol('k')
+
+    equation = generate_equation(k, 1, min_value, max_value, min_exponent, max_exponent)
+    sum = sympy.Sum(equation, (k, 1, n)).doit()
+    result = sympy.limit(sum, n, sympy.oo)
+
+    problem = rf"The limit of the sum ${sympy.latex(equation)}$ from ${1}$ to ${n}$ that tends to $\infty$"
+    return problem, f'${sympy.latex(result)}$ = ${round(result.evalf(), 2)}$'
+
+
+def sequence_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
+    r"""Infinite sum of sequence
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | The infinite sum of $\sum_{n=1}^{\infty} 1/n^{2}$ | $(\pi^{2})/6 = 1.64$ |
+    """
+    n = sympy.Symbol('n')
+
+    equation = generate_equation(n, 1, min_value, max_value, min_exponent, max_exponent)
+    sum = sympy.Sum(equation, (n, 1, sympy.oo))
+    result = sum.doit()
+    problem = f"The infinite sum of the equation ${sympy.latex(equation)}$"
+    return problem, f'${sympy.latex(result)}$ = ${round(result.evalf(), 2)}$'

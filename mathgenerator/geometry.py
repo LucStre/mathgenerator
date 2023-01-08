@@ -690,11 +690,11 @@ def equation_of_plain_from_three_points(max_coordinate=20, min_coordinate=-20):
     str_coeff_y = "+"+str(coeff_y) if coeff_y >= 0 else str(coeff_y)
     str_coeff_z = "+"+str(coeff_z) if coeff_z >= 0 else str(coeff_z)
 
-
     problem = f"What is the equation of the plain between points $({x1},{y1},{z1})$ and $({x2},{y2},{z2})$ and $({x3},{y3},{z3})$ in standard form?"
 
     if constant > 0:
-        solution = str(coeff_x) + "x " + str_coeff_y +"y " + str_coeff_z +"z = " + str(-constant)
+        solution = str(coeff_x) + "x " + str_coeff_y + "y " + str_coeff_z + "z = " + str(-constant)
     else:
-        solution = str(coeff_x) + "x " + str_coeff_y +"y " + str_coeff_z +"z = " + str(constant)
+        solution = str(coeff_x) + "x " + str_coeff_y + "y " + str_coeff_z + "z = " + str(constant)
     return problem, f'${solution}$'
+    

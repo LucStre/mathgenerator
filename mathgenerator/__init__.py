@@ -21,6 +21,7 @@ def get_gen_list():
 def gen_by_id(id, *args, **kwargs):
     return get_by_id(id)(*args, **kwargs)
 
+
 def get_by_id(id):
     return globals()[gen_list[id][0]]
 

@@ -726,7 +726,7 @@ def vector_dot(min_val=-20, max_val=20):
     return problem, solution
 
 
-def vector_add(min_val=-20,max_val=20):
+def vector_add(min_val=-20, max_val=20):
     r"""Result of adding 2 vectors
 
     | Ex. Problem | Ex. Solution |
@@ -736,14 +736,14 @@ def vector_add(min_val=-20,max_val=20):
     a = [random.randint(min_val, max_val) for i in range(3)]
     b = [random.randint(min_val, max_val) for i in range(3)]
     c = [
-        a[0] + b[0],a[1] + b[1], a[2] + b[2]
+        a[0] + b[0], a[1] + b[1], a[2] + b[2]
     ]
 
     problem = rf"${a} + {b} = $"
     solution = f"${c}$"
     return problem, solution
 
-def vector_sub(min_val=-20,max_val=20):
+def vector_sub(min_val=-20, max_val=20):
     r"""Result of substracting 2 vectors
 
     | Ex. Problem | Ex. Solution |
@@ -753,7 +753,7 @@ def vector_sub(min_val=-20,max_val=20):
     a = [random.randint(min_val, max_val) for i in range(3)]
     b = [random.randint(min_val, max_val) for i in range(3)]
     c = [
-        a[0] - b[0],a[1] - b[1], a[2] - b[2]
+        a[0] - b[0], a[1] - b[1], a[2] - b[2]
     ]
 
     problem = rf"${a} - {b} = $"
@@ -761,7 +761,7 @@ def vector_sub(min_val=-20,max_val=20):
     return problem, solution
 
 
-def vector_projection(min_val=-20,max_val=20):
+def vector_projection(min_val=-20, max_val=20):
     r"""Result of projecting a vector on a vector
 
     | Ex. Problem | Ex. Solution |
@@ -780,7 +780,7 @@ def vector_projection(min_val=-20,max_val=20):
     yc = str(Fraction(coeff*b[1]).limit_denominator())
     zc = str(Fraction(coeff*b[2]).limit_denominator())
 
-    c=[xc,yc,zc]
+    c=[xc, yc, zc]
 
     problem = f"What is ${a}$ projected on ${b}$ ?"
     solution = f"${c}$"

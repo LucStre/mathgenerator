@@ -782,6 +782,6 @@ def vector_projection(min_val=-20,max_val=20):
 
     c=[xc,yc,zc]
 
-    problem = rf"${a} projected on {b} is $"
+    problem = f"What is ${a}$ projected on ${b}$ ?"
     solution = f"${c}$"
     return problem, solution

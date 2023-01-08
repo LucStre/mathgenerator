@@ -139,6 +139,9 @@ function displayGenDict(dict = genDict, open = false) {
   await pyodide.runPython('import mathgenerator');
 
   d_splashMessage.innerHTML = 'Loading list of generators...';
+  pyodide.globals.set('getKwargs', (rawKwargs) => {
+    return [...rawKwargs.matchAll(/(\w+|_)+\=(\[[^\]]*\]|[^,]*)*/g)].map((m) => m[0]);
+  });
   await pyodide.runPython(`import mathgenerator
 import inspect
 
@@ -164,7 +167,7 @@ for id, gen in enumerate(genList):
         "name": gen[0],
         "function_name": gen[0],
         "subject": gen[1],
-        "kwargs": str(inspect.signature(genFn))[1:-1].split(", "),
+        "kwargs": getKwargs(str(inspect.signature(genFn))[1:-1]),
         "samples": samples
     }
 `);

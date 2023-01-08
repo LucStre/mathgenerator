@@ -688,8 +688,8 @@ def equation_of_plain_from_three_points(max_coordinate=20, min_coordinate=-20):
     coeff_z = (x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)
     constant = coeff_x * (-x1) + coeff_y * (-y1) + coeff_z * (-z1)
 
-    str_coeff_y = "+"+str(coeff_y) if coeff_y >= 0 else str(coeff_y)
-    str_coeff_z = "+"+str(coeff_z) if coeff_z >= 0 else str(coeff_z)
+    str_coeff_y = "+" + str(coeff_y) if coeff_y >= 0 else str(coeff_y)
+    str_coeff_z = "+" + str(coeff_z) if coeff_z >= 0 else str(coeff_z)
 
     problem = f"What is the equation of the plain between points $({x1},{y1},{z1})$ and $({x2},{y2},{z2})$ and $({x3},{y3},{z3})$ in standard form?"
 

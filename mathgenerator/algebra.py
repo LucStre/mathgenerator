@@ -772,7 +772,7 @@ def vector_projection(min_val=-20, max_val=20):
     a = [random.randint(min_val, max_val) for i in range(3)]
     b = [random.randint(min_val, max_val) for i in range(3)]
 
-    b_length = b[0]**2 + b[1]**2 + b[2]**2 
+    b_length = b[0]**2 + b[1]**2 + b[2]**2
     a_dot_b = a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 
     coeff = a_dot_b / b_length
@@ -781,7 +781,7 @@ def vector_projection(min_val=-20, max_val=20):
     yc = str(Fraction(coeff * b[1]).limit_denominator())
     zc = str(Fraction(coeff * b[2]).limit_denominator())
 
-    c=[xc, yc, zc]
+    c = [xc, yc, zc]
 
     problem = f"What is ${a}$ projected on ${b}$ ?"
     solution = f"${c}$"

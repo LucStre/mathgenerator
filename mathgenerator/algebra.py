@@ -739,7 +739,7 @@ def vector_add(min_val=-20,max_val=20):
         a[0] + b[0],a[1] + b[1], a[2] + b[2]
     ]
 
-    problem = rf"${a} \tplus {b} = $"
+    problem = rf"${a} + {b} = $"
     solution = f"${c}$"
     return problem, solution
 
@@ -756,7 +756,7 @@ def vector_sub(min_val=-20,max_val=20):
         a[0] - b[0],a[1] - b[1], a[2] - b[2]
     ]
 
-    problem = rf"${a} \tminus {b} = $"
+    problem = rf"${a} - {b} = $"
     solution = f"${c}$"
     return problem, solution
 
@@ -782,6 +782,6 @@ def vector_projection(min_val=-20,max_val=20):
 
     c=[xc,yc,zc]
 
-    problem = rf"${a} \tprojected on {b} = $"
+    problem = rf"${a} projected on {b} is $"
     solution = f"${c}$"
     return problem, solution

@@ -175,7 +175,7 @@ def limit_of_sum(min_value=-5, max_value=5, min_exponent=-5, max_exponent=-1):
     sum = sympy.Sum(equation, (k, 1, n)).doit()
     result = sympy.limit(sum, n, sympy.oo)
 
-    problem = f"The limit of the sum ${sympy.latex(equation)}$ from ${1}$ to ${n}$ that tends to $\infty$"
+    problem = rf"The limit of the sum ${sympy.latex(equation)}$ from ${1}$ to ${n}$ that tends to $\infty$"
     return problem, f'${sympy.latex(result)}$ = ${round(result.evalf(), 2)}$'
 
 

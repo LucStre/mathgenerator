@@ -320,7 +320,7 @@ def perimeter_of_polygons(max_sides=12, max_length=120):
 
 
 def trigonometric_equations(functions=["sin", "cos", "tan"]):
-    r"""Trigonometric Equations
+    """Trigonometric Equations
 
     | Ex. Problem | Ex. Solution |
     | --- | --- |

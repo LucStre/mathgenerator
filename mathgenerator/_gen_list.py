@@ -124,5 +124,8 @@ gen_list = [
     ("is_composite", "basic_math"),
     ("complementary_and_supplementary_angle", "geometry"),
     ("simplify_square_root", "basic_math"),
-    ("equation_of_line_from_three_points", "geometry"),
+    ("vector_add", "algebra"),
+    ("vector_sub", "algebra"),
+    ("vector_project", "algebra"),
+    ("equation_of_plain_from_three_points", "geometry"),
 ]

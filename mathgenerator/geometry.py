@@ -663,12 +663,12 @@ def volume_sphere(max_radius=100):
     solution = f"${ans} m^3$"
     return problem, solution
 
-def equation_of_line_from_three_points(max_coordinate=20, min_coordinate=-20):
-    """Equation of line from three points
+def equation_of_plain_from_three_points(max_coordinate=20, min_coordinate=-20):
+    """Equation of plain from three points
 
     | Ex. Problem | Ex. Solution |
     | --- | --- |
-    | What is the equation of the line between points $(1,-1,2)$ and $(3,2,0)$ and $(1,-2,1)$ in standard form? | $-5x+2y-2z=-11$ |
+    | What is the equation of the plain between points $(1,-1,2)$ and $(3,2,0)$ and $(1,-2,1)$ in standard form? | $-5x+2y-2z=-11$ |
     """
     x1 = random.randint(min_coordinate, max_coordinate)
     x2 = random.randint(min_coordinate, max_coordinate)
@@ -691,7 +691,7 @@ def equation_of_line_from_three_points(max_coordinate=20, min_coordinate=-20):
     str_coeff_z = "+"+str(coeff_z) if coeff_z >= 0 else str(coeff_z)
 
 
-    problem = f"What is the equation of the line between points $({x1},{y1},{z1})$ and $({x2},{y2},{z2})$ and $({x3},{y3},{z3})$ in standard form?"
+    problem = f"What is the equation of the plain between points $({x1},{y1},{z1})$ and $({x2},{y2},{z2})$ and $({x3},{y3},{z3})$ in standard form?"
 
     if constant > 0:
         solution = str(coeff_x) + "x " + str_coeff_y +"y " + str_coeff_z +"z = " + str(-constant)

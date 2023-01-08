@@ -126,6 +126,6 @@ gen_list = [
     ("simplify_square_root", "basic_math"),
     ("vector_add", "algebra"),
     ("vector_sub", "algebra"),
-    ("vector_project", "algebra"),
+    ("vector_projection", "algebra"),
     ("equation_of_plain_from_three_points", "geometry"),
 ]
